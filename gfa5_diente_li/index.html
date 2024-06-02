@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Generator</title>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Number Shape</title>
+    </head>
+    <body>
+        <h2>Number Shape</h2>
+        <button onclick="promptForNumber()">Enter a Number</button>
+        <div id="output"></div>
+    
+        <script>
+            function promptForNumber() {
+                let number;
+                while (true) {
+                    number = prompt("Please enter a number:");
+                    if (number !== null && !isNaN(number) && number.trim() !== "") {
+                        number = parseInt(number, 10);
+                        break;
+                    }
+                    alert("Input must be a valid number!");
+                }
+    
+                document.getElementById("output").innerHTML = generateShape(number);
+            }
+    
+            function generateShape(number) {
+                let output = `Number inputted: ${number}\n\n`;
+                if (number % 2 === 0) {
+                    output += generateTriangle(number);
+                } else {
+                    output += generateRectangle(number);
+                }
+                return `<pre>${output}</pre>`;
+            }
+    
+            function generateRectangle(size) {
+                let rectangle = "";
+                for (let i = size; i >= 1; i--) {
+                    rectangle += Array(size).fill(i).join(' ') + '\n';
+                }
+                return rectangle;
+            }
+    
+            function generateTriangle(size) {
+                let triangle = "";
+                for (let i = size; i >= 1; i--) {
+                    triangle += Array(i).fill(i).join(' ') + '\n';
+                }
+                return triangle;
+            }
+        </script>
+    </body>
+    </html>
+    
